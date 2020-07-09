@@ -232,5 +232,28 @@ class Siswa extends MY_Controller{
         }
         /* ==================== END :: SEND EMAIL ==================== */
         return $response;
-    }
+	}
+	
+	/* ==================== START : PROCESS DELETE DATA ==================== */
+	public function delete()
+	{
+		# get question_categori_id
+		$username= $this->uri->segment(3);
+		
+		# no relations
+		if ( $this->M_question->delete( $id ) ) {
+			$this->msg= [
+				'stats'=>1,
+				'msg'=>'Data Berhasil Dihapus',
+			];
+		} else {
+			$this->msg= [
+			'stats'=>0,
+				'msg'=>'Maaf Data Gagal Dihapus',
+			];
+		}
+			
+		echo json_encode( $this->msg );
+	}
+	/* ==================== END : PROCESS DELETE DATA ==================== */
 }
