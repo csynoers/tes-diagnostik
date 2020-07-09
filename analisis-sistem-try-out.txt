@@ -1,0 +1,109 @@
+[14:45, 2/19/2020] Bimbel IC Surabaya Rofiq: Selamat siang,  kalau mau pesan aplikasi try out cat cpns bisa?
+[15:15, 2/19/2020] JOGJASITE.COM: 
+			Iya selamat siang,
+			Konsepnya seperti apa ya pak?
+
+[15:18, 2/19/2020] Bimbel IC Surabaya Rofiq: 
+			Seperti ujian tes cpns, 
+			jadi ada sistem penilaiannya juga, kalau untuk tiu dan twk benar nilainya
+14:28 03/03/2020 5 kalau untuk yg tkp tiap jawaban (abcde) ada skornya
+[15:27, 2/19/2020] JOGJASITE.COM: Baik pak, bisa
+
+[15:31, 2/19/2020] Bimbel IC Surabaya Rofiq: Kira2 biayanya sampai brapa?
+[09:34, 2/20/2020] Bimbel IC Surabaya Rofiq: Gimana kak?
+[11:50, 2/20/2020] JOGJASITE.COM: 
+			Dari sistem pemrogramannya anggaran antara 4jt- 5,5jt pak.
+			Tapi kalau berkanan diinfokan detail konsep atau alur yg diinginkan bisa kita kalkulasi ulang pak.
+			Misal soal terdiri berapa jenis, skor atau nilai seperti apa, apakah pengisi harus login sendiri (ada akunnya), apakah hasil akan diexport, dll
+
+[14:16, 2/20/2020] Bimbel IC Surabaya Rofiq: Soal terdiri dari 3 jenis,  yaitu TIU,  TWK dan TKP.
+			Skor penilaiannya untuk tiu dan twk benar x 5 sedangkan yang tkp tiap jawaban ada skornya jadi contoh jawaban a nilainya 1 b nilainya 3, c 4 dst..
+			Jadi nanti untuk yg jawaban yg tkp ada kolom untuk mengisi tiap skornya, untuk hasil ujiannya nnti bisa di eksport ke excell.
+[14:21, 2/20/2020] Bimbel IC Surabaya Rofiq: Untuk sistem ujiannya sama seperti tes cat cpns,  jadi mengerjakan matapelajaran tiu tapi setelah tiu selesai pindah ke matapelajaran twk,
+			dan pada saat mengerjakan pelajaran twk tetap bisa kembali melihat soal yg tiu tadi..  
+			Setelah ujian selesai hasilnya langsung keluar
+[14:31, 2/20/2020] Bimbel IC Surabaya Rofiq: Untuk login pesertanya,  peserta harus registrasi terlebih dahulu,  setelah registrasi kemudian siswa login untuk memulai ujian tapi sebelum bisa membuka soal harus mengisi token terlebih dahulu
+[14:32, 2/20/2020] Bimbel IC Surabaya Rofiq: Hasil ujian yg keluar meliputi total per mata pelajaran,  jadi terdiri dari skor tiu,  skor twk,  skor tkp kemudian ada total semua
+[14:33, 2/20/2020] Bimbel IC Surabaya Rofiq: Dan ada keterangan lolos atau tidaknya..  Jadi di menu admin kita dapat mengisi pasion grade tiap matapelajarannya
+[14:38, 2/20/2020] Bimbel IC Surabaya Rofiq: Untuk timenya nanti 1 jam 30 menit,  jadi kalau waktunya habis langsung keluar hasilnya
+
+[14:38, 2/20/2020] JOGJASITE.COM: baik pak
+[14:39, 2/20/2020] JOGJASITE.COM: ini admin yg beri atau aktifkan token / kode unik
+[14:39, 2/20/2020] JOGJASITE.COM: tiu dan twk benar x 5. jika sa14:29 03/03/2020lah 0
+[14:39, 2/20/2020] Bimbel IC Surabaya Rofiq: Iya kak salah nilainya 0
+[14:40, 2/20/2020] Bimbel IC Surabaya Rofiq: Sebaiknya bagaimana kak?  Agar tidak sembarang orang bisa masuk gitu
+[14:40, 2/20/2020] JOGJASITE.COM: sebelum akses semua harus login
+[14:41, 2/20/2020] Bimbel IC Surabaya Rofiq: Iyaa
+[14:41, 2/20/2020] JOGJASITE.COM: kemudian yg mau mengerjakan soal harus punya kode unik yg dibuat/diaktifkan oleh admin
+[14:41, 2/20/2020] Bimbel IC Surabaya Rofiq: Iya seperti itu
+[14:43, 2/20/2020] Bimbel IC Surabaya Rofiq: Untuk hostingnya itu nanti paketnya brapa tahun kak?
+[14:43, 2/20/2020] Bimbel IC Surabaya Rofiq: Trus kira2 waktu penherjaannya brapa lama?
+[14:44, 2/20/2020] JOGJASITE.COM: kalau hosting tahunan
+[14:45, 2/20/2020] JOGJASITE.COM: dari konsepnya perlu waktu 25-35 harian karena beberapa sistem yg perlu waktu
+[14:46, 2/20/2020] Bimbel IC Surabaya Rofiq: Jadi kira2 untuk bulan april sudh bisa digunakan ya kak
+[14:47, 2/20/2020] JOGJASITE.COM: bisa diusahakan pak. jika data2 pertanyaan dll sudah ada bisa lebih cepat
+[14:48, 2/20/2020] Bimbel IC Surabaya Rofiq: Baik kak
+[14:48, 2/20/2020] Bimbel IC Surabaya Rofiq: Mungkin ada yg ditanyakan lagi mengenai sistemnya itu tadi kak?
+[14:49, 2/20/2020] Bimbel IC Surabaya Rofiq: Trus untuk kelanjutannya bagaimana?  Ataukah dp dulu atau bagaimana?
+[14:49, 2/20/2020] JOGJASITE.COM: untuk soal 2 apakah diubah ubah
+[14:51, 2/20/2020] JOGJASITE.COM: nanti akan kita infokan invoice pembayaran DP dan data apa saja yg disiapkan, mohon dibantu untuk melengkapi data klien :
+Nama :
+No WA/Telp :
+email :
+Instansi /Perusahaan :
+Alamat :
+
+Terimakasih
+[14:52, 2/20/2020] Bimbel IC Surabaya Rofiq: Maksudnya diubah ubah bagaimna kak? 
+Untuk soalnya nanti bisa diacak ya kak,  jadi 1 orang dengan orang yg lain soalnya berbeda
+[14:55, 2/20/2020] Bimbel IC Surabaya Rofiq: Nama : Rofiq
+No WA/Telp : 081390308758
+email : pinsus2017surabaya@gmail.com
+Instansi /Perusahaan : Indonesia College Surabaya
+Alamat : Jln Mulyosari Mas C3 No 19 Surabaya
+[14:55, 2/20/2020] JOGJASITE.COM: soalnya apakah ingin pertanyaan dan jawaban diubah/ditambah?
+[14:56, 2/20/2020] JOGJASITE.COM: jadi admin bisa buat pertanyaan2 baru atau mengedit
+[14:56, 2/20/2020] Bimbel IC Surabaya Rofiq: Iya kak,  bisa crud
+[14:56, 2/20/2020] JOGJASITE.COM: baik
+[14:57, 2/20/2020] JOGJASITE.COM: kami pelajari konsepnya dan kalkulasi iaya dan waktu pengerjaannya. segera kita infokan
+[14:57, 2/20/2020] Bimbel IC Surabaya Rofiq: Baik kak
+
+Analisis Data awal untuk sistem Try Out CAT (Computer Assisted Test) CPNS:
+	Users:
+		1. Admin (root) Menu : 
+			- Login
+			- Lupa Password (Via email)
+			- Dashboard
+			- Pages (Tambah,Edit,Delete)
+			- Kategori Soal (Tambah,Edit,Delete)
+			- Soal (Tambah,Edit,Delete)
+			- Hasil Penilaian (Detail penilaian,Export hasil penilaian,Informasi Grade,Informasi lulus/tidak)
+			- Daftar informasi peserta (Detail peserta, Pemberian Token)
+			- Konfigurasi Ujian (Durasi Ujian, Jumlah soal setiap matapelajaran/kategori soal,Passion Grade setiap matapelajaran/kategori soal, Passion Grade total matapelajaran/kategori soal)
+			- Logout
+		2. Siswa (peserta) Menu :
+			- Login
+			- Lupa Password (Via email)
+			- Daftar (Verifikasi email)
+			- Dashboard
+			- Pages
+			- Try Out
+			- Hasil Try Out (Detail Try Out, Export hasil Try Out, Informasi Grade, Informasi lulus/tidak)
+			- Profil
+			- Logout
+	
+	Aturan Sistem :
+		1. Kategori Soal: 
+			1. Tes Intelegensi Umum (TIU) aturan penilaian : jika jawaban benar X5 , jika salah 0
+			2. Tes Wawasan Kebangsaan (TWK) aturan penilaian : jika jawaban benar X5, jika salah 0
+			3. Tes Karakteristik Pribadi (TKP) aturan penilaian : setiap jawaban mempunyai penilaian tersendiri, misal a X1, b X2,c X3 ,...
+		2. Soal : bentuk soal pilihan ganda
+		3. Waktu Ujian : 1 jam 30 menit
+		4. Pages : digunakan untuk membuat halaman baru yang memungkinkan untuk membantu menyampaikan informasi Try Out. Misal : Contact us, Question & Answer , Panduan untuk Try Out  
+
+	??? pertanyaan :
+		1. apakah ada materi untuk setiap kategori soal, yang memungkinkan siswa/peserta untuk belajar terlebih dahulu ?
+		2. apakah ada soal dan pembahasan ?
+		3. apakah ada kisi-kisi terkait tryout ?
+		4. apakah ada batasan siswa, berapa kali bisa melakukan try out?
+	
