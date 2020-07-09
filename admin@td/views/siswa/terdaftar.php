@@ -33,6 +33,7 @@
                   <th>Asal SMA</th>
                   <th>Email</th>
                   <th>Telepon</th>
+                  <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -41,6 +42,8 @@
                     // print_r($value);
                     $value->no          = ($key+1);
                     $value->birthDate   = date("d-m-Y", strtotime($value->birth_date));
+
+                    $value->href_delete = base_url('siswa/delete/'.$value->username);
                     echo "
                       <tr>
                         <td>{$value->no}</td>
@@ -50,6 +53,18 @@
                         <td>{$value->schools}</td>
                         <td>{$value->email}</td>
                         <td>{$value->telp}</td>
+                        <td>
+                          <div class='btn-group'>
+                            <button type='button' class='btn btn-default'>Action</button>
+                            <button type='button' class='btn btn-default dropdown-toggle' data-toggle='dropdown' aria-expanded='false'>
+                              <span class='caret'></span>
+                              <span class='sr-only'>Toggle Dropdown</span>
+                            </button>
+                            <div class='dropdown-menu' role='menu' x-placement='top-start' style='position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(67px, -165px, 0px);'>
+                            <a class='dropdown-item delete-confirm' href='{$value->href_delete}' data-confirm='Apakah anda yakin akan menghapus user ini, jika iya data user maupun hasil tes user ini akan dihapus?'>Delete</a>
+                            </div>
+                          </div>
+                        </td>
                       </tr>
                     ";
                   }
@@ -65,6 +80,7 @@
                     <th>Asal SMA</th>
                     <th>Email</th>
                     <th>Telepon</th>
+                    <th>Actions</th>
                   </tr>
                 </tfoot>
               </table>

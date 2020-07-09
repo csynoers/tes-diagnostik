@@ -238,10 +238,9 @@ class Siswa extends MY_Controller{
 	public function delete()
 	{
 		# get question_categori_id
-		$username= $this->uri->segment(3);
+		$username= $this->security->xss_clean($this->uri->segment(3));
 		
-		# no relations
-		if ( $this->M_question->delete( $id ) ) {
+		if ( $this->M_users->delete( $username ) ) {
 			$this->msg= [
 				'stats'=>1,
 				'msg'=>'Data Berhasil Dihapus',

@@ -238,5 +238,20 @@ class M_users extends CI_Model{
 		$this->db->join( $this->tableUsersDetail, $this->tableRelationUsersDetail, 'left' );
 
 		return $this->db->get( $this->table );
-	}
+    }
+    
+    public function delete($username)
+    {
+        $this->delete_answers_and_answers_detail($username);
+        return $this->delete_users_and_users_detail($username);
+    }
+
+    protected function delete_users_and_users_detail($username)
+    {
+        return $this->db->query("DELETE users,users_detail FROM users LEFT JOIN users_detail ON users.username=users_detail.username WHERE users.username='{$username}' ");
+    }
+    protected function delete_answers_and_answers_detail($username)
+    {
+        return $this->db->query("DELETE answers,answers_detail FROM answers RIGHT JOIN answers_detail ON answers.answer_id=answers_detail.answer_id WHERE answers.username='{$username}' ");
+    }
 }

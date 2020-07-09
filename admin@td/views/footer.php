@@ -218,6 +218,17 @@ function getTanggalIndoSekarang()
       location.reload()
     } ,'json');
   });
+  $( document ).on('click', '.delete-confirm', function( e ){
+    e.preventDefault();
+    if ( !confirm( $(this).data('confirm') ) ) { 
+      return false;
+    } else {
+      $.get( $(this).attr('href'), function(data){
+        alert( (data.stats=='1') ? data.msg : data.msg )
+        location.reload()
+      } ,'json');
+    }
+  });
   /* ==================== END : PROCESS DELETE DATA ==================== */
 
   /* ==================== START : RESET TYNIMCE IN MODAL ==================== */
