@@ -47,18 +47,27 @@
     		}
             $this->render_pages( 'hasil/hasil_try_out', $data );
         }
-        public function lulus()
+        /* ==================== START : PROCESS DELETE DATA ==================== */
+        public function delete()
         {
-            $data['rows'] = $this->M_answers->get_lulus();
-            // $this->debugs($data);
-            $this->render_pages( 'hasil/hasil_try_out_lulus', $data );
+            # load model relations
+            $this->load->model('M_relations');
+
+            if ( $this->M_relations->delete_answers_relation_answers_detail( $this->uri->segment(3) ) ) { # jika berhasil dihapus
+                $this->msg= [
+                    'stats'=>1,
+                    'msg'=>'Data Berhasil Dihapus',
+                ];
+            } else { # jika tidak berhasil dihapus
+                $this->msg= [
+                'stats'=>0,
+                    'msg'=>'Maaf Data Gagal Dihapus',
+                ];
+            }
+            echo json_encode($this->msg);
         }
-        public function tidak_lulus()
-        {
-            $data['rows'] = $this->M_answers->get_tidak_lulus();
-            // $this->debugs($data);
-            $this->render_pages( 'hasil/hasil_try_out_tidak_lulus', $data );
-        }
+        /* ==================== END : PROCESS DELETE DATA ==================== */
+
         public function export()
         {
             switch ($this->uri->segment(3)) {
