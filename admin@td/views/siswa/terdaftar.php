@@ -27,6 +27,7 @@
                 <thead>
                 <tr>
                   <th>No</th>
+                  <th>Tgl Pendaftaran</th>
                   <th>NIK</th>
                   <th>Nama Lengkap</th>
                   <th>Tgl Lahir</th>
@@ -39,14 +40,15 @@
                 <tbody>
                 <?php
                   foreach ($rows as $key => $value) {
-                    // print_r($value);
                     $value->no          = ($key+1);
+                    $value->tglPendaftaran  = date("d-m-Y H:i:s", strtotime($value->create_at));
                     $value->birthDate   = date("d-m-Y", strtotime($value->birth_date));
 
                     $value->href_delete = base_url('siswa/delete/'.$value->username);
                     echo "
                       <tr>
                         <td>{$value->no}</td>
+                        <td>{$value->tglPendaftaran}</td>
                         <td>{$value->nik}</td>
                         <td>{$value->fullname}</td>
                         <td>{$value->birthDate}</td>
@@ -74,6 +76,7 @@
                 <tfoot>
                   <tr>
                     <th>No</th>
+                    <th>Tgl Pendaftaran</th>
                     <th>NIK</th>
                     <th>Nama Lengkap</th>
                     <th>Tgl Lahir</th>

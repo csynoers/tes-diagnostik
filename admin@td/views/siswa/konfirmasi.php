@@ -38,6 +38,7 @@
                 <thead>
                 <tr>
                   <th>No</th>
+                  <th>Tgl Pendaftaran</th>
                   <th>NISN</th>
                   <th>Nama Lengkap</th>
                   <th>Tgl Lahir</th>
@@ -54,6 +55,7 @@
                   // echo '</pre>';
                   foreach ($rows as $key => $value) {
                     $value->no          = ($key+1);
+                    $value->tglPendaftaran  = date("d-m-Y H:i:s", strtotime($value->create_at));
                     $value->href_edit   = base_url('siswa/konfirmasi/'.$value->id);
                     $value->birthDate   = date("d-m-Y", strtotime($value->birth_date));
 
@@ -61,6 +63,7 @@
                     echo "
                       <tr>
                         <td>{$value->no}</td>
+                        <td>{$value->tglPendaftaran}</td>
                         <td>{$value->nik}</td>
                         <td>{$value->fullname}</td>
                         <td>{$value->birthDate}</td>
@@ -90,6 +93,7 @@
                 <tfoot>
                   <tr>
                     <th>No</th>
+                    <th>Tgl Pendaftaran</th>
                     <th>NISN</th>
                     <th>Nama Lengkap</th>
                     <th>Tgl Lahir</th>

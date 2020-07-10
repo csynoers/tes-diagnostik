@@ -213,39 +213,167 @@ class Kategori extends MY_Controller {
 	}
 	/* ==================== END : KATEGORI SOAL  ==================== */
 
-	/* ==================== START : KATEGORI :: ASAL SEKOLAH  ==================== */
+	/* ==================== START : MASTER DATA :: ASAL SEKOLAH  ==================== */
 	public function asal_sekolah()
 	{
 		# load question_categories Model
-		$this->load->model('M_question_categories');
+		$this->load->model('M_schools');
 
 		switch ( empty($this->uri->segment(3)) ? NULL : $this->uri->segment(3) ) {
 			case 'add':
 				# code...
-				$this->soal_add();
+				$this->asal_sekolah_add();
 				break;
 				
 			case 'edit':
 				# code...
-				$this->soal_edit();
+				$this->asal_sekolah_edit();
 				break;
 				
 			case 'store':
-				$this->soal_store();
+				$this->asal_sekolah_store();
 				break;
 				
 			case 'delete':
 				# code...
-				$this->soal_delete();
+				$this->asal_sekolah_delete();
 				break;
 			
 			default:
 				# code...
-				$data['rows'] = $this->M_question_categories->get_question_categories();
+				$data['rows'] = $this->M_schools->get();
 				// $this->debugs($data);
-				$this->render_pages( 'question_categories', $data );
+				$this->render_pages( 'asal_sekolah', $data );
 				break;
 		}
 		
 	}
+	public function asal_sekolah_add()
+	{
+		$data['data_action']  = base_url() .'kategori/asal-sekolah/store';
+		$html= "
+			<form action='javascript:void(0)' data-action='{$data['data_action']}' role='form' method='post' enctype='multipart/form-data'>
+				<div class='form-group'>
+					<label>Nama sekolah</label>
+					<input type='text' name='title' class='form-control' placeholder='Ketikan nama sekolah disini ...' required=''>
+				</div>
+				<div class='form-group'>
+					<label class='d-block'>Publish</label>
+					<div class='form-check-inline'>
+						<label class='form-check-label'>
+							<input type='radio' class='form-check-input' name='publish' value='0' required='' checked=''>YES
+						</label>
+						</div>
+						<div class='form-check-inline'>
+						<label class='form-check-label'>
+							<input type='radio' class='form-check-input' name='publish' value='1' required=''>NO
+						</label>
+					</div>
+				</div>
+				<button type='submit' class='btn btn-primary'>Save</button>
+			</form>
+        ";
+		echo $html;
+	}
+
+	/* ==================== START : FORM EDIT MASTER DATA ASAL SEKOLAH url{kategori/asal-sekolah/edit/id} ==================== */
+	public function asal_sekolah_edit()
+	{
+		$id				= $this->uri->segment(4);
+		$data['rows']	= $this->M_schools->get( $id );
+
+		foreach ($data['rows'] as $key => $value) {		
+			$data['data_action']  = base_url().'kategori/asal-sekolah/store/'.$id;		
+			$checked_option = [
+				($value->block=='0' ? 'checked' : NULL ),
+				($value->block=='1' ? 'checked' : NULL ),
+			];
+			$html= "
+				<form action='javascript:void(0)' data-action='{$data['data_action']}' role='form' id='addNew' method='post' enctype='multipart/form-data'>
+					<div class='form-group'>
+						<label>Nama sekolah</label>
+						<input value='{$value->title}' type='text' name='title' class='form-control' placeholder='Type the title page here ...' required=''>
+					</div>
+					<div class='form-group'>
+						<label class='d-block'>Publish</label>
+						<div class='form-check-inline'>
+							<label class='form-check-label'>
+								<input type='radio' class='form-check-input' name='publish' value='0' required='' {$checked_option[0]}>YES
+							</label>
+							</div>
+							<div class='form-check-inline'>
+							<label class='form-check-label'>
+								<input type='radio' class='form-check-input' name='publish' value='1' required='' {$checked_option[1]}>NO
+							</label>
+						</div>
+					</div>
+					<button type='submit' class='btn btn-primary'>Save</button>
+				</form>
+			";
+		}
+		echo $html;
+	}
+	/* ==================== END : FORM EDIT MASTER DATA ASAL SEKOLAH ==================== */
+
+	/**
+	 * ==================== START : PROCESS DATA MASTER DATA ASAL SEKOLAH STORE url{kategori/asal-sekolah/store/id}==================== 
+	 * id = bersifat optional (jika terdapat id maka process update jika tidak, maka proses insert)
+	 * */
+	public function asal_sekolah_store()
+	{
+		$id = $this->uri->segment(4);
+		if ( $id ) { # update data
+			$this->M_schools->post= $this->input->post();
+			if ( $this->M_schools->store( $id ) ) {
+				$this->msg= [
+					'stats'=> 1,
+					'msg'=> 'Data Berhasil Diubah',
+				];
+			} else {
+				$this->msg= [
+					'stats'=> 0,
+					'msg'=> 'Data Gagal Diubah',
+				];
+			}
+			echo json_encode( $this->msg );
+		} else { # insert data
+			$this->M_schools->post= $this->input->post();
+			if ( $this->M_schools->store() ) {
+				$this->msg= [
+					'stats'=> 1,
+					'msg'=> 'Data Berhasil Ditambahkan',
+				];
+			} else {
+				$this->msg= [
+					'stats'=> 0,
+					'msg'=> 'Data Gagal Ditambahkan',
+				];
+			}
+			echo json_encode( $this->msg );
+		}
+	}
+	/* ==================== END : PROCESS DATA MASTER DATA ASAL SEKOLAH STORE ==================== */
+
+	/* ==================== START : PROCESS DATA MASTER DATA ASAL SEKOLAH DELETE ==================== */
+	public function asal_sekolah_delete()
+	{
+		# get question_categori_id
+		$id= $this->uri->segment(4);
+		if ( $this->M_schools->delete( $id ) ) {
+			$this->msg= [
+				'stats'=>1,
+				'msg'=>'Data Berhasil Dihapus',
+			];
+		} else {
+			$this->msg= [
+			'stats'=>0,
+				'msg'=>'Maaf Data Gagal Dihapus',
+			];
+		}
+			
+		echo json_encode( $this->msg );
+	}
+	/* ==================== END : PROCESS DATA MASTER DATA ASAL SEKOLAH DELETE ==================== */
+
+	/* ==================== END : MASTER DATA :: ASAL SEKOLAH  ==================== */
 }

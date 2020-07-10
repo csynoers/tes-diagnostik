@@ -27,6 +27,7 @@
                 <thead>
                 <tr>
                   <th>No</th>
+                  <th>Tgl Pendaftaran</th>
                   <th>NISN</th>
                   <th>Nama Lengkap</th>
                   <th>Tgl Lahir</th>
@@ -40,14 +41,16 @@
                 <tbody>
                 <?php
                   foreach ($rows as $key => $value) {
-                    $value->statusSiswa = $value->block=='1' ? 'Mendaftar' : 'Terdaftar' ;
-                    $value->no          = ($key+1);
-                    $value->birthDate   = date("d-m-Y", strtotime($value->birth_date));
+                    $value->tglPendaftaran  = date("d-m-Y H:i:s", strtotime($value->create_at));
+                    $value->statusSiswa     = $value->block=='1' ? 'Mendaftar' : 'Terdaftar' ;
+                    $value->no              = ($key+1);
+                    $value->birthDate       = date("d-m-Y", strtotime($value->birth_date));
 
-                    $value->href_delete = base_url('siswa/delete/'.$value->username);
+                    $value->href_delete     = base_url('siswa/delete/'.$value->username);
                     echo "
                       <tr>
                         <td>{$value->no}</td>
+                        <td>{$value->tglPendaftaran}</td>
                         <td>{$value->nik}</td>
                         <td>{$value->fullname}</td>
                         <td>{$value->birthDate}</td>
@@ -76,6 +79,7 @@
                 <tfoot>
                   <tr>
                     <th>No</th>
+                    <th>Tgl Pendaftaran</th>
                     <th>NISN</th>
                     <th>Nama Lengkap</th>
                     <th>Tgl Lahir</th>

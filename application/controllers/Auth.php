@@ -43,12 +43,16 @@ class Auth extends MY_Controller{
 
     /* ==================== START : REGISTER PAGE url{auth/register} ==================== */
     public function register(){
-        $csrf = array(
+        $data = array(
             'csrf_name' => $this->security->get_csrf_token_name(),
             'csrf_hash' => $this->security->get_csrf_hash()
         );
 
-        $this->load->view('register',$csrf);
+        # load modal M_schools untuk mendapatkan data asal sekolah
+        $this->load->model('M_schools');
+        $data['asal_sekolah'] = $this->M_schools->get();
+
+        $this->load->view('register',$data);
     }
     /* ==================== END : REGISTER PAGE url{auth/register} ==================== */
 

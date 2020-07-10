@@ -5,7 +5,7 @@
          * CREATE this table TABLE
             CREATE TABLE `schools` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
-            `title` int(11) NOT NULL,
+            `title` char(128) NOT NULL,
             `block` enum('0','1') NOT NULL,
             `create_at` datetime NOT NULL,
             `update_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -35,30 +35,28 @@
         /* ==================== END COLLECT DATA ==================== */
 
         /* ==================== START STORE DATA ==================== */
-        public function store()
+        public function store( $id=NULL )
         {
-            if ( $this->uri->segment(3) ) { # update
+            if ( $id ) { # update
                 $data= [
                     'title'=> $this->post['title'],
-                    'slug'=> $this->post['slug'],
-                    'description'=> $this->post['description'],
                     'block'=> $this->post['publish'],
                 ];
                 $where= [
-                    'id'=> $this->uri->segment(3)
+                    'id'=> $id
                 ];
-                return $this->db->update('pages',$data,$where);
+                return $this->db->update( $this->table,$data,$where );
 
             } else { # insert
+                $this->title       = $this->post['title'];
+                $this->block       = $this->post['publish'];
+                $this->create_at   = date('Y-m-d H:i:s');
                 $data= [
-                    'title'=> $this->post['title'],
-                    'slug'=> $this->post['slug'],
-                    'description'=> $this->post['description'],
-                    'block'=> $this->post['publish'],
+                    'title'=> $this->title,
+                    'block'=> $this->block,
                     'create_at'=> date('Y-m-d H:i:s'),
                 ];
-                return $this->db->insert('pages',$data);
-
+                return $this->db->insert( $this->table,$data );
             }
         }
         /* ==================== END STORE DATA ==================== */

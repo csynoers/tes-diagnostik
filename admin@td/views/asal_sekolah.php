@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Informasi Hasil Tes</h1>
+            <h1>Data Informasi Asal Sekolah</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="<?php echo base_url() ?>">Beranda</a></li>
-              <li class="breadcrumb-item active">Informasi Hasil Tes</li>
+              <li class="breadcrumb-item"><a href="<?php echo base_url() ?>admin">Beranda</a></li>
+              <li class="breadcrumb-item active">Informasi Asal Sekolah</li>
             </ol>
           </div>
         </div>
@@ -23,18 +23,18 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <a href="javascript: void(0)" data-href="<?= base_url('hasil/export/semua') ?>" data-title="Semua Hasil Tes Diagnostik" class="btn btn-primary export-excel">Export ke Excel</a>
+              <!-- <h3 class="card-title">Daftar Informasi Kelas</h3> -->
+              <a href="javascript:void(0)" data-title="Tambah informasi Asal Sekolah" data-href="<?= base_url('kategori/asal-sekolah/add') ?>" class="btn btn-default float-right form-add"><i class="fa fa-plus"></i> Add New</a>
             </div>
+            <!-- /.card-header -->
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>No</th>
-                  <th>Tgl Pendaftaran</th>
-                  <th>NISN</th>
-                  <th>Nama Lengkap</th>
-                  <th>Asal Sekolah</th>
-                  <th>Waktu Pengerjaan</th>
+                  <th>Nama Sekolah</th>
+                  <th>Create At</th>
+                  <th>Publish</th>
                   <th>Actions</th>
                 </tr>
                 </thead>
@@ -42,20 +42,15 @@
                 <?php
                   foreach ($rows as $key => $value) {
                     $value->no          = ($key+1);
-                    $value->tglPendaftaran  = date("d-m-Y H:i:s", strtotime($value->create_at));
-                    $value->href_edit   = base_url('hasil/detail/'.$value->answer_id);
-                    // $value->birthDate   = date("d-m-Y", strtotime($value->birth_date));
-                    // $value->jwbn        = substr($value->jawaban, 0, 20);
-
-                    $value->href_delete = base_url('hasil/delete/'.$value->answer_id);
+                    $value->href_edit   = base_url('kategori/asal-sekolah/edit/'.$value->id);
+                    $value->href_delete = base_url('kategori/asal-sekolah/delete/'.$value->id);
+                    
                     echo "
-                      <tr data-id='{$value->answer_id}'>
+                      <tr>
                         <td>{$value->no}</td>
-                        <td>{$value->tglPendaftaran}</td>
-                        <td>{$value->nik}</td>
-                        <td>{$value->fullname}</td>
-                        <td>{$value->schools}</td>
-                        <td>{$value->timeDiff}</td>
+                        <td>{$value->title}</td>
+                        <td>{$value->create_at_mod}</td>
+                        <td>{$value->block_mod}</td>
                         <td>
                           <div class='btn-group'>
                             <button type='button' class='btn btn-default'>Action</button>
@@ -64,7 +59,8 @@
                               <span class='sr-only'>Toggle Dropdown</span>
                             </button>
                             <div class='dropdown-menu' role='menu' x-placement='top-start' style='position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(67px, -165px, 0px);'>
-                            <a class='dropdown-item delete-confirm' href='{$value->href_delete}' data-confirm='Apakah anda yakin akan menghapus hasil tes ini?'>Delete</a>
+                              <a class='dropdown-item form-edit' href='javscript:void(0)' data-title='Edit informasi sekolah' data-href='{$value->href_edit}'>Edit</a>
+                              <a class='dropdown-item delete-confirm' data-confirm='Apakah anda yakin akan menghapus informasi sekolah: {$value->title} ini?' href='{$value->href_delete}'>Delete</a>
                             </div>
                           </div>
                         </td>
@@ -77,11 +73,9 @@
                 <tfoot>
                   <tr>
                     <th>No</th>
-                    <th>Tgl Pendaftaran</th>
-                    <th>NISN</th>
-                    <th>Nama Lengkap</th>
-                    <th>Asal Sekolah</th>
-                    <th>Waktu Pengerjaan</th>
+                    <th>Nama Sekolah</th>
+                    <th>Create At</th>
+                    <th>Publish</th>
                     <th>Actions</th>
                   </tr>
                 </tfoot>

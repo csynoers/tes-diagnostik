@@ -66,9 +66,19 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input name="schools" type="text" class="form-control" placeholder="Asal SMA" required="" autocomplete="on">
           <div class="input-group-append">
-              <span class="fa fa-user input-group-text"></span>
+              <span class="input-group-text">Asal Sekolah</span>
+          </div>
+          <select class="form-control" name="schools" required="">
+            <option value="" selected disabled>-- Pilih Sekolah --</option>
+            <?php
+              foreach ($asal_sekolah as $key => $value) {
+                echo "<option value='{$value->title}'>{$value->title}</option>";
+              }
+            ?>
+          </select>
+          <div class="input-group-append">
+              <span class="fa fa-university input-group-text"></span>
           </div>
         </div>
         <div class="input-group mb-3">
