@@ -212,4 +212,40 @@ class Kategori extends MY_Controller {
 		echo json_encode( $this->msg );
 	}
 	/* ==================== END : KATEGORI SOAL  ==================== */
+
+	/* ==================== START : KATEGORI :: ASAL SEKOLAH  ==================== */
+	public function asal_sekolah()
+	{
+		# load question_categories Model
+		$this->load->model('M_question_categories');
+
+		switch ( empty($this->uri->segment(3)) ? NULL : $this->uri->segment(3) ) {
+			case 'add':
+				# code...
+				$this->soal_add();
+				break;
+				
+			case 'edit':
+				# code...
+				$this->soal_edit();
+				break;
+				
+			case 'store':
+				$this->soal_store();
+				break;
+				
+			case 'delete':
+				# code...
+				$this->soal_delete();
+				break;
+			
+			default:
+				# code...
+				$data['rows'] = $this->M_question_categories->get_question_categories();
+				// $this->debugs($data);
+				$this->render_pages( 'question_categories', $data );
+				break;
+		}
+		
+	}
 }

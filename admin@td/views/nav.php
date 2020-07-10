@@ -67,21 +67,34 @@
               </p>
             </a>
           </li>
-          <li class="nav-item ">
-            <a href="<?php echo base_url('kategori/soal') ?>" class="nav-link <?php echo ($this->uri->segment(1)=='kategori') ? 'active' : null ; ?>">
-              <i class="nav-icon fa fa-clipboard"></i>
+          <li class="nav-item has-treeview <?php echo ($this->uri->segment(1) == 'kategori' || $this->uri->segment(1) == 'soal') ? 'menu-open' : null ; ?>">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa fa-database"></i>
               <p>
-                Kategori Soal
+                Master Data
+                <i class="right fa fa-angle-left"></i>
               </p>
             </a>
-          </li>
-          <li class="nav-item ">
-            <a href="<?php echo base_url('soal/index') ?>" class="nav-link <?php echo ($this->uri->segment(1)=='soal') ? 'active' : null ; ?>">
-              <i class="nav-icon fa fa-clipboard"></i>
-              <p>
-                Soal
-              </p>
-            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item" >
+                <a href="<?php echo base_url('kategori/soal') ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'kategori' && $this->uri->segment(2) == 'soal') ? 'active' : null ; ?>">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Kategori Soal</p>
+                </a>
+              </li>
+              <li class="nav-item" >
+                <a href="<?php echo base_url('soal/index') ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'soal' && $this->uri->segment(2) == 'index') ? 'active' : null ; ?>">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Soal</p>
+                </a>
+              </li>
+              <li class="nav-item" >
+                <a href="<?php echo base_url('kategori/asal-sekolah') ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'kategori' && $this->uri->segment(2) == 'asal-sekolah') ? 'active' : null ; ?>">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Asal Sekolah</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item has-treeview <?php echo ($this->uri->segment(1) == 'siswa') ? 'menu-open' : null ; ?>">
             <a href="#" class="nav-link">
@@ -113,7 +126,7 @@
             </ul>
           </li>
           <li class="nav-item ">
-            <a href="<?php echo base_url('hasil/index') ?>" class="nav-link <?php echo ($this->uri->segment(2)=='index') ? 'active' : null ; ?>">
+            <a href="<?php echo base_url('hasil/index') ?>" class="nav-link <?php echo ($this->uri->segment(1)=='hasil' && $this->uri->segment(2)=='index') ? 'active' : null ; ?>">
               <i class="nav-icon fa fa-calendar-check-o"></i>
               <p>
                 Hasil Tes
