@@ -5,7 +5,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Informasi Hasil Tes</h1>
+            <h1>Data Informasi Hasil Tes <?= $title ?></h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -23,7 +23,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <a href="javascript: void(0)" data-href="<?= base_url('hasil/export/semua') ?>" data-title="Semua Hasil Tes Diagnostik" class="btn btn-primary export-excel">Export ke Excel</a>
+              <a href="javascript: void(0)" data-href="<?= $export ?>" data-title="<?= $export_title ?>" class="btn btn-primary export-excel" title="Export <?= $export_title ?>">Export ke Excel</a>
             </div>
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped">

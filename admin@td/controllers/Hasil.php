@@ -37,15 +37,35 @@
 
         public function index()
         {
-            $data['rows'] = $this->M_answers->get();
-            // $this->debugs($data);
+            $title          = $this->security->xss_clean($this->uri->segment(3));
+            $data['title']  = empty($title) ? NULL : " : {$title}" ;
+            $data['export'] = base_url('hasil/export/semua'); 
+            $data['export_title'] = "Semua Hasil Tes Diagnostik"; 
+            
+            if ( $title ) { 
+                $data['rows']   = $this->M_answers->get_by_schools($title);
+                // $data['title']  = empty($title) ? NULL : " : {$title}" ;
+                $data['export'] = base_url("hasil/export/semua/{$title}");  
+                $data['export_title'] = "Semua Hasil Tes Diagnostik {$title}";
+                // $this->debugs($data);
+                // die();
+
+            } else { # jika $title kosong
+                # code...
+                $data['rows']   = $this->M_answers->get();
+                // $this->debugs($data);
+                // die();
+            }
+
             foreach($data['rows'] as $key => $value){
                 $data['rows'][$key]->jawaban = '';
-        		foreach($this->M_answers_detail->get($value->answer_id) as $keyDetail => $valueDetail){
-        		    $data['rows'][$key]->jawaban .= $valueDetail->question_assessment ;
-        		}
-    		}
+                // foreach($this->M_answers_detail->get($value->answer_id) as $keyDetail => $valueDetail){
+                //     $data['rows'][$key]->jawaban .= $valueDetail->question_assessment ;
+                // }
+            }
+
             $this->render_pages( 'hasil/hasil_try_out', $data );
+            
         }
         /* ==================== START : PROCESS DELETE DATA ==================== */
         public function delete()
@@ -70,29 +90,23 @@
 
         public function export()
         {
-            switch ($this->uri->segment(3)) {
-                case 'lulus':
-                    $data['rows'] = $this->M_answers->get_lulus();
-                    $this->load->view( 'hasil/hasil_try_out_lulus_export', $data );
-                    break;
-                
-                case 'tidak-lulus':
-                    $data['rows'] = $this->M_answers->get_tidak_lulus();
-                    $this->load->view( 'hasil/hasil_try_out_tidak_lulus_export', $data );
-                    break;
-                
-                default:
-                    # semua hasil try out
-                    $data['rows'] = $this->M_answers->get();
-                    foreach($data['rows'] as $key => $value){
-                        $data['rows'][$key]->jawaban = '';
-                		foreach($this->M_answers_detail->get($value->answer_id) as $keyDetail => $valueDetail){
-                		    $data['rows'][$key]->jawaban .= $valueDetail->question_assessment ;
-                		}
-            		}
-                    $this->load->view( 'hasil/hasil_try_out_export', $data );
-                    break;
+            $title          = $this->security->xss_clean($this->uri->segment(4)); 
+
+            if ( $title ) { 
+                $data['rows']   = $this->M_answers->get_by_schools($title);
+
+            } else { # jika $title kosong
+                $data['rows']   = $this->M_answers->get();
             }
+
+            # semua hasil try out
+            foreach($data['rows'] as $key => $value){
+                $data['rows'][$key]->jawaban = '';
+                foreach($this->M_answers_detail->get($value->answer_id) as $keyDetail => $valueDetail){
+                    $data['rows'][$key]->jawaban .= $valueDetail->question_assessment ;
+                }
+            }
+            $this->load->view( 'hasil/hasil_try_out_export', $data );
         }
         public function detail()
         {

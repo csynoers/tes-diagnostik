@@ -8,7 +8,17 @@ class M_users_detail extends CI_Model{
 	protected $nik; 
 	protected $fullname; 
 	protected $email; 
-    protected $telp;
+	protected $telp;
+	
+	public function get_group_by_schools()
+	{
+		$this->db->select('username,schools,(SELECT COUNT(*) FROM answers WHERE answers.username=users_detail.username) AS hasil');
+		$this->db->where('schools IS NOT NULL');
+		$this->db->having('hasil > ', 0);
+		$this->db->group_by("schools");
+
+		return $this->db->get($this->table)->result_object();
+	}
 
     public function store( $username )
     {
