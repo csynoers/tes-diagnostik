@@ -26,7 +26,7 @@ class Siswa extends MY_Controller{
         }
 
 		
-		$this->load->model('M_users');
+		$this->load->model(['M_users','M_relations']);
 		
 		$this->load->helper('rupiah_helper');
 
@@ -46,7 +46,86 @@ class Siswa extends MY_Controller{
     {
         $data['rows'] = $this->M_users->terdaftar();
 		$this->render_pages( 'siswa/terdaftar', $data );
-    }
+	}
+	
+	/* ==================== Page::Siswa Belum Mengerjakan ==================== */
+	public function belum_mengerjakan()
+	{
+		# membuat variabel filter asal sekolah terlebih dahulu
+		$title                  = $this->security->xss_clean($this->input->get('schools'));
+		$data['title']          = empty($title) ? NULL : "{$title}" ;
+		$data['export']         = base_url('siswa/export/belum-mengerjakan'); 
+		$data['export_title']   = "Semua Siswa Belum Mengerjakan Tes Diagnostik"; 
+		$data['asal_sekolah']   = $this->M_relations->get_siswa_belum_mengerjakan_group_by_schools();
+
+		if ( empty($title) ) { # jika filter sekolahan kosong kosong
+			$data['rows']           = $this->M_relations->get_siswa_belum_mengerjakan();
+			
+		} else { # jika filter asal sekolahan tidak kosong
+			$data['rows']           = $this->M_relations->get_siswa_belum_mengerjakan_by_schools($title);
+			$data['export']         = base_url("siswa/export/belum-mengerjakan/{$title}");  
+			$data['export_title']   = "Semua Siswa Belum Mengerjakan Tes Diagnostik {$title}";
+		}
+
+		$this->render_pages( 'siswa/belum_mengerjakan', $data );		
+	}
+	/* ==================== End Page::Siswa Belum Mengerjakan ==================== */
+
+	/* ==================== Page::Siswa Sedang Mengerjakan ==================== */
+	public function sedang_mengerjakan()
+	{
+		# membuat variabel filter asal sekolah terlebih dahulu
+		$title                  = $this->security->xss_clean($this->input->get('schools'));
+		$data['title']          = empty($title) ? NULL : "{$title}" ;
+		$data['export']         = base_url('siswa/export/sedang-mengerjakan'); 
+		$data['export_title']   = "Semua Siswa Sedang Mengerjakan Tes Diagnostik"; 
+		$data['asal_sekolah']   = $this->M_relations->get_siswa_sedang_mengerjakan_group_by_schools();
+
+		if ( empty($title) ) { # jika filter sekolahan kosong kosong
+			$data['rows']           = $this->M_relations->get_siswa_sedang_mengerjakan();
+			
+		} else { # jika filter asal sekolahan tidak kosong
+			$data['rows']           = $this->M_relations->get_siswa_belum_mengerjakan_by_schools($title);
+			$data['export']         = base_url("siswa/export/sedang-mengerjakan/{$title}");  
+			$data['export_title']   = "Semua Siswa Sedang Mengerjakan Tes Diagnostik {$title}";
+		}
+
+		$this->render_pages( 'siswa/sedang_mengerjakan', $data );		
+	}
+	/* ==================== End Page::Siswa Sedang Mengerjakan ==================== */
+	
+	/* ==================== Page::Export Siswa ==================== */
+	public function export()
+	{
+		# filter export by segment ke 3
+		switch ($this->uri->segment(3)) {
+			case 'belum-mengerjakan':
+				$title = $this->security->xss_clean($this->uri->segment(4)); 
+				if ( $title ) { # jika filter sekolahan tidak kosong kosong
+					$data['rows']	= $this->M_relations->get_siswa_belum_mengerjakan_by_schools($title);
+		
+				} else { # jika filter sekolahan kosong kosong
+					$data['rows']   = $this->M_relations->get_siswa_belum_mengerjakan();
+				}
+				$this->load->view( 'siswa/belum_mengerjakan_export', $data );
+				break;
+			case 'sedang-mengerjakan':
+				$title = $this->security->xss_clean($this->uri->segment(4)); 
+				if ( $title ) { # jika filter sekolahan tidak kosong kosong
+					$data['rows']	= $this->M_relations->get_siswa_sedang_mengerjakan_by_schools($title);
+		
+				} else { # jika filter sekolahan kosong kosong
+					$data['rows']   = $this->M_relations->get_siswa_sedang_mengerjakan();
+				}
+				$this->load->view( 'siswa/sedang_mengerjakan_export', $data );
+				break;
+			
+			default:
+				# code...
+				break;
+		}
+	}
+	/* ==================== End Page::Export Siswa ==================== */
 
     public function konfirmasi()
     {

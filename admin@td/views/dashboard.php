@@ -83,13 +83,13 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3><?= $siswa_terdaftar-$hasil_try_out ?></h3>
+                <h3><?= $siswa_belum_mengerjakan ?></h3>
                 <p style="height: 45px;">Siswa Belum Mengerjakan Tes</p>
               </div>
               <div class="icon">
                 <i class="fa fa-calendar-times-o"></i>
               </div>
-              <a href="javascript:void(0);" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="<?php echo base_url('siswa/belum-mengerjakan') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           
@@ -103,7 +103,7 @@
               <div class="icon">
                 <i class="fa fa-calendar-minus-o"></i>
               </div>
-              <a href="javascript:void(0);" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+              <a href="<?php echo base_url('siswa/sedang-mengerjakan') ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
           </div>
           

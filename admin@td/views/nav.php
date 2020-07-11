@@ -123,6 +123,18 @@
                   <p>Konfirmasi Siswa</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url('siswa/belum-mengerjakan')?>" class="nav-link <?php echo ($this->uri->segment(2) == 'belum-mengerjakan') ? 'active' : null ; ?>">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Siswa Belum Mengerjakan</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?php echo base_url('siswa/sedang-mengerjakan')?>" class="nav-link <?php echo ($this->uri->segment(2) == 'sedang-mengerjakan') ? 'active' : null ; ?>">
+                  <i class="fa fa-circle-o nav-icon"></i>
+                  <p>Siswa Sedang Mengerjakan</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item ">

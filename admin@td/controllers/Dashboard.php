@@ -32,7 +32,7 @@ class Dashboard extends MY_Controller {
             redirect(base_url());
 		}
 
-		$this->load->model(['M_users','M_answers','M_question']);
+		$this->load->model(['M_users','M_answers','M_question','M_relations']);
 	}
 	public function index()
 	{
@@ -40,7 +40,8 @@ class Dashboard extends MY_Controller {
 		$data['pembayaran_belum_dikonfirmasi'] = count($this->M_users->konfirmasi());
 		$data['hasil_try_out'] = count($this->M_answers->get());
 		$data['total_soal'] = count($this->M_question->get_question());
-		$data['siswa_sedang_mengerjakan'] = count($this->M_users->siswa_sedang_mengerjakan());
+		$data['siswa_belum_mengerjakan'] = count($this->M_relations->get_siswa_belum_mengerjakan());
+		$data['siswa_sedang_mengerjakan'] = count($this->M_relations->get_siswa_sedang_mengerjakan());
 		// $this->debugs($data);
         $this->render_pages( 'dashboard', $data );
         

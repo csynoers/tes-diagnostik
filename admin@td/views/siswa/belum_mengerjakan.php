@@ -5,12 +5,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Data Informasi Hasil Tes <?= $title ?></h1>
+            <h1>Data Informasi Siswa Belum Mengerjakan</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?php echo base_url() ?>">Beranda</a></li>
-              <li class="breadcrumb-item active">Informasi Hasil Tes</li>
+              <li class="breadcrumb-item active">Informasi Siswa Belum Mengerjakan</li>
             </ol>
           </div>
         </div>
@@ -29,13 +29,13 @@
                   <b>! Catatan</b><br>
                   1. <b>Filter berdasarkan asal sekolah</b> digunakan untuk menyeleksi tampilan data dan export data berdasarkan asal sekolah.<br>
                   2. <b>Export ke Excel</b> digunakan untuk mendapatkan data dalam format (.xls).<br>  
-                  3. Informasi dibawah ini dirutkan secara <b>Descending</b> berdasarkan tanggal dan waktu mulainya pengerjaan tes.<br>
-                  4. <b>Actions</b>-><b>Delete</b> digunakan untuk menghapus data hasil tes siswa yang dipilih(hanya hasil tes siswa yang dihapus).
+                  3. Informasi dibawah ini dirutkan secara <b>Descending</b> berdasarkan tanggal dan waktu pendaftaran atau registrasi.<br>
+                  4. <b>Actions</b>-><b>Delete</b> digunakan untuk menghapus data siswa yang dipilih.
                 </p>
               </div>
               <!-- end bantuan untuk halaman ini -->
 
-              <form class="form-inline" action="<?= base_url("hasil/index") ?>">
+              <form class="form-inline" action="<?= base_url("siswa/belum-mengerjakan") ?>">
                 <div class="input-group mb-3 w-100">
                   <div class="input-group-prepend">
                     <button class="btn btn-success" data-toggle="collapse" data-target="#help"> <i class="fa fa-question-circle"></i> Bantuan</button>
@@ -59,7 +59,6 @@
               </form>
               <hr>
             </div>
-            <!-- ./card-header -->
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -68,29 +67,31 @@
                   <th>Tgl Pendaftaran</th>
                   <th>NISN</th>
                   <th>Nama Lengkap</th>
+                  <th>Tgl Lahir</th>
                   <th>Asal Sekolah</th>
-                  <th>Waktu Pengerjaan</th>
+                  <th>Email</th>
+                  <th>Telepon</th>
                   <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 <?php
                   foreach ($rows as $key => $value) {
-                    $value->no          = ($key+1);
-                    $value->tglPendaftaran  = date("d-m-Y H:i:s", strtotime($value->create_at));
-                    $value->href_edit   = base_url('hasil/detail/'.$value->answer_id);
-                    // $value->birthDate   = date("d-m-Y", strtotime($value->birth_date));
-                    // $value->jwbn        = substr($value->jawaban, 0, 20);
+                    $value->no              = ($key+1);
+                    $value->tglPendaftaran  = date("d/m/Y H:i:s", strtotime($value->create_at));
+                    $value->birthDate       = date("d/m/Y", strtotime($value->birth_date));
+                    $value->href_delete     = base_url('siswa/delete/'.$value->username);
 
-                    $value->href_delete = base_url('hasil/delete/'.$value->answer_id);
                     echo "
-                      <tr data-id='{$value->answer_id}'>
+                      <tr>
                         <td>{$value->no}</td>
                         <td>{$value->tglPendaftaran}</td>
                         <td>{$value->nik}</td>
                         <td>{$value->fullname}</td>
+                        <td>{$value->birthDate}</td>
                         <td>{$value->schools}</td>
-                        <td>{$value->timeDiff}</td>
+                        <td>{$value->email}</td>
+                        <td>{$value->telp}</td>
                         <td>
                           <div class='btn-group'>
                             <button type='button' class='btn btn-default'>Action</button>
@@ -99,7 +100,7 @@
                               <span class='sr-only'>Toggle Dropdown</span>
                             </button>
                             <div class='dropdown-menu' role='menu' x-placement='top-start' style='position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(67px, -165px, 0px);'>
-                            <a class='dropdown-item delete-confirm' href='{$value->href_delete}' data-confirm='Apakah anda yakin akan menghapus hasil tes ini?'>Delete</a>
+                              <a class='dropdown-item delete-confirm' href='{$value->href_delete}' data-confirm='Apakah anda yakin akan menghapus user ini?'>Delete</a>
                             </div>
                           </div>
                         </td>
@@ -115,8 +116,10 @@
                     <th>Tgl Pendaftaran</th>
                     <th>NISN</th>
                     <th>Nama Lengkap</th>
+                    <th>Tgl Lahir</th>
                     <th>Asal Sekolah</th>
-                    <th>Waktu Pengerjaan</th>
+                    <th>Email</th>
+                    <th>Telepon</th>
                     <th>Actions</th>
                   </tr>
                 </tfoot>
