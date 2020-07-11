@@ -23,6 +23,13 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
+              <p>
+                <b>! Catatan</b><br>
+                1. <b>Filter berdasarkan asal sekolah</b> digunakan untuk menyeleksi tampilan data dan export data berdasarkan asal sekolah.<br>
+                2. <b>Export ke Excel</b> digunakan untuk mendapatkan data dalam format (.xls).<br>  
+                3. Informasi dibawah ini dirutkan secara <b>Descending</b> berdasarkan tanggal dan waktu mulainya pengerjaan tes.<br>
+                4. <b>Actions</b>-><b>Delete</b> digunakan untuk menghapus data hasil tes siswa yang dipilih(hanya hasil tes siswa yang dihapus).
+              </p>
               <form class="form-inline" action="<?= base_url("hasil/index") ?>">
                 <div class="input-group mb-3 w-100">
                   <div class="input-group-prepend">
@@ -42,6 +49,7 @@
                   </div>
                 </div>
               </form>
+              <hr>
             </div>
             <!-- ./card-header -->
             <div class="card-body">

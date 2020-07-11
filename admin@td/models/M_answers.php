@@ -34,6 +34,7 @@
                 $this->db->where( $this->primaryKey, $id );
             }
             $this->db->join($this->tableUsersDetail,$this->tableUsersDetailRelation,'left');
+            $this->db->order_by('`answers`.`start_exam`', 'DESC');
             $result = $this->db->get($this->table);
 
             if ( $id ) {
