@@ -23,8 +23,27 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <a href="javascript: void(0)" data-href="<?= $export ?>" data-title="<?= $export_title ?>" class="btn btn-primary export-excel" title="Export <?= $export_title ?>">Export ke Excel</a>
+              <form class="form-inline" action="<?= base_url("hasil/index") ?>">
+                <div class="input-group mb-3 w-100">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Filter berdasarkan asal sekolah</span>
+                  </div>
+                  <select class="form-control" name="schools" onchange="this.form.submit()" method="GET">
+                    <option value="0">Semua Siswa</option>
+                    <?php
+                      foreach ($asal_sekolah as $key => $value) {
+                        $value->selected = ($value->schools==$title)? 'selected' : NULL ;
+                        echo "<option value='{$value->schools}' {$value->selected}>{$value->schools}</option>";
+                      }
+                    ?>
+                  </select>
+                  <div class="input-group-prepend">
+                    <a href="javascript: void(0)" data-href="<?= $export ?>" data-title="<?= $export_title ?>" class="btn btn-primary export-excel" title="Export <?= $export_title ?>">Export ke Excel</a>
+                  </div>
+                </div>
+              </form>
             </div>
+            <!-- ./card-header -->
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>

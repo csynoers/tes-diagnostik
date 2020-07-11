@@ -32,36 +32,25 @@
                 redirect(base_url());
             }
 
-            $this->load->model(['M_answers','M_answers_detail']);
+            $this->load->model(['M_answers','M_answers_detail','M_users_detail']);
         }
 
         public function index()
         {
-            $title          = $this->security->xss_clean($this->uri->segment(3));
-            $data['title']  = empty($title) ? NULL : " : {$title}" ;
-            $data['export'] = base_url('hasil/export/semua'); 
-            $data['export_title'] = "Semua Hasil Tes Diagnostik"; 
-            
-            if ( $title ) { 
-                $data['rows']   = $this->M_answers->get_by_schools($title);
-                // $data['title']  = empty($title) ? NULL : " : {$title}" ;
-                $data['export'] = base_url("hasil/export/semua/{$title}");  
-                $data['export_title'] = "Semua Hasil Tes Diagnostik {$title}";
-                // $this->debugs($data);
-                // die();
+            # membuat variabel filter asal sekolah terlebih dahulu
+            $title                  = $this->security->xss_clean($this->input->get('schools'));
+            $data['title']          = empty($title) ? NULL : "{$title}" ;
+            $data['export']         = base_url('hasil/export/semua'); 
+            $data['export_title']   = "Semua Hasil Tes Diagnostik"; 
+            $data['asal_sekolah']   = $this->M_users_detail->get_group_by_schools();
 
-            } else { # jika $title kosong
-                # code...
-                $data['rows']   = $this->M_answers->get();
-                // $this->debugs($data);
-                // die();
-            }
-
-            foreach($data['rows'] as $key => $value){
-                $data['rows'][$key]->jawaban = '';
-                // foreach($this->M_answers_detail->get($value->answer_id) as $keyDetail => $valueDetail){
-                //     $data['rows'][$key]->jawaban .= $valueDetail->question_assessment ;
-                // }
+            if ( empty($title) ) { # jika filter sekolahan kosong kosong
+                $data['rows']           = $this->M_answers->get();
+                
+            } else { # jika filter asal sekolahan tidak kosong
+                $data['rows']           = $this->M_answers->get_by_schools($title);
+                $data['export']         = base_url("hasil/export/semua/{$title}");  
+                $data['export_title']   = "Semua Hasil Tes Diagnostik {$title}";
             }
 
             $this->render_pages( 'hasil/hasil_try_out', $data );
