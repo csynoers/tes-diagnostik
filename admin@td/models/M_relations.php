@@ -62,15 +62,10 @@
         {
             $result = $this->db->query("
                 SELECT
-                    users.username,
-                    users.level,
-                    users.block,
-                    users.create_at,
-                    users.session,                
                     users_detail.schools,
                     (SELECT COUNT(*) FROM answers WHERE answers.username=users.username) AS jumlah_tes
                 FROM `users` 
-                    LEFT JOIN users_detail
+                    INNER JOIN users_detail
                         ON users_detail.username=users.username      
                 WHERE users.level='user' AND users.block='0' AND users.session IS NULL
                     GROUP BY users_detail.schools
@@ -84,17 +79,7 @@
         {
             $result = $this->db->query("
                 SELECT
-                    users.username,
-                    users.level,
-                    users.block,
-                    users.create_at,
-                    users.session,
-                    users_detail.nik,
-                    users_detail.fullname,
-                    users_detail.email,
-                    users_detail.telp,
-                    users_detail.birth_date,
-                    users_detail.schools
+                    *
                 FROM `users` 
                     LEFT JOIN users_detail
                         ON users_detail.username=users.username      
@@ -108,22 +93,16 @@
         {
             $result = $this->db->query("
                 SELECT
-                    users.username,
-                    users.level,
-                    users.block,
-                    users.create_at,
-                    users.session,
-                    users_detail.nik,
-                    users_detail.fullname,
-                    users_detail.email,
-                    users_detail.telp,
-                    users_detail.birth_date,
-                    users_detail.schools
+                    *
                 FROM `users` 
                     LEFT JOIN users_detail
                         ON users_detail.username=users.username      
-                WHERE users.level='user' AND users.block='0' AND users.session IS NOT NULL AND users_detail.schools='{$schools}'
-                    ORDER BY users.create_at DESC
+                WHERE users.level='user'
+                    AND users.block='0'
+                    AND users.session IS NOT NULL
+                	AND users_detail.schools='{$schools}'
+                    GROUP BY users_detail.schools
+                    ORDER BY users.create_at DESC  
             ");
 
             return $result->result_object();
@@ -131,11 +110,7 @@
         public function get_siswa_sedang_mengerjakan_group_by_schools()
         {
             $result = $this->db->query("
-                SELECT
-                    users.level,
-                    users.block,
-                    users.create_at,
-                    users.session,                
+                SELECT               
                     users_detail.schools
                 FROM `users` 
                     LEFT JOIN users_detail

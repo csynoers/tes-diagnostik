@@ -36,7 +36,7 @@ class Auth extends MY_Controller{
             'csrf_name' => $this->security->get_csrf_token_name(),
             'csrf_hash' => $this->security->get_csrf_hash()
         );
-
+        echo $this->encryption->decrypt( '3e97f5f1d70a8d01b5c2047bd0eadf649546fac89be5c35dfb15def2603c2282777fa85bb9888d03ee2efed050258852315db7c6cfc3e924c589356e897d3d2b4kzYbHFzjVHi9QWcEDW8xbC4LktWew==' );
         $this->load->view('login',$csrf);
     }
     /* ==================== END : LOGIN PAGE url{auth/index} ==================== */

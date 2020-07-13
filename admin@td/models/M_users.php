@@ -174,6 +174,7 @@ class M_users extends CI_Model{
         $this->db->where($this->primaryKey,$id);
         $data = array(
             'block' => $this->block,
+            'last_login' => date('Y-m-d H:i:s'),
         );
 
         return $this->db->update( $this->table, $data);
